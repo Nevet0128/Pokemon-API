@@ -1,0 +1,52 @@
+
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body{
+  background-color: #FFD700;
+}
+
+#tabla__pokemon{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 300px;
+  margin: 30px;
+  border: 3px solid black;
+}
+
+h2{
+  text-align: center;
+}
+
+input{
+  width: 250px;
+}
+
+
+#pokemon__container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 3px solid black;
+   align-items: center;
+  width: 200px;
+  background-color: cadetblue;
+}
+
+.pokemon__name{
+  text-align: center;
+}
+
+.pokemon__id{
+  text-align: center;
+}
+
+.pokemon__img{
+  margin: auto;
+}
