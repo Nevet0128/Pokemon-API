@@ -45,7 +45,7 @@ button:hover {
   cursor: pointer;
 }
 
-#tabla__pokemon {
+#pokemon__table {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -78,7 +78,7 @@ input {
   font-size: 1.4rem;
 }
 
-#pokemon__container__options {
+.pokemon__container__options {
   display: flex;
   flex-direction: column;
   gap: 30px;
