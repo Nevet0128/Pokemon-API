@@ -19,24 +19,39 @@ document.addEventListener('click', (e) => {
     getPokemon(URL)
   }
 
-  /*
-  if (e.target == document.querySelector('.add_pokemon')) {
+  if (e.target == document.getElementById('add__pokemon__btn')) {
+    let pokemonLenght = Object.keys(pokemonStack).length
+
+    //console.log(pokemonLenght)
+
     if (pokemonStack[pokemonName]) {
       alert('Ya está en la tabla el pokémon')
       return
     }
-    
+
+    if (pokemonLenght > 5) {
+      alert('El límite es de 6 pokémon')
+      return
+    }
+
     pokemonStack[pokemonName] = pokemonID
-    
     URL = `https://pokeapi.co/api/v2/pokemon/${pokemonID}`
-    
     addPokemonTable(URL)
   }
-  
+
   if (e.target == document.querySelector('.info_pokemon')) {
     console.log('info')
   }
-   */
+})
+
+$searchBar.addEventListener('keydown', (e) => {
+  if (e.key == 'Enter') {
+    let lowCaseName = $searchBar.value.toLowerCase()
+    let param = lowCaseName
+    //console.log(param, typeof param)
+    URL = `https://pokeapi.co/api/v2/pokemon/${param}`
+    getPokemon(URL)
+  }
 })
 
 async function getPokemon(URL) {
@@ -55,24 +70,23 @@ async function getPokemon(URL) {
     pokemonID = data.id
 
     pokemonList += `
-      <div class="pokemon__container__basic-info">
+      <div>
         <h3 class="pokemon__name">${data.name}</h3>
         <span class="pokemon__id">Nº${data.id}</span>
       </div>
 
-      <div class="pokemon__container__image">
+      <div>
         <img
+          class="pokemon__img"
           src="${data.sprites.front_default}"
           alt="image of ${data.name}"
-          class="pokemon__img"
         />
       </div>
 
       <div class="pokemon__container__options">
-        <button class="add_pokemon">Agregar</button>
-        <button class="info_pokemon">Info</button>
+        <button id="add__pokemon__btn" >Agregar</button>
+        <button class="info__pokemon__btn" >Info</button>
       </div>
-
   `
     $pokemonContainer.dataset.id = data.id
     $pokemonContainer.innerHTML = pokemonList
@@ -87,28 +101,29 @@ async function addPokemonTable(URL) {
     let response = await fetch(URL)
     let data = await response.json()
 
-    pokemonList += `
-    <div class="pokemon__table__card">
-      <div class="pokemon__container__basic-info">
-        <h3 class="pokemon__name">${data.name}</h3>
-        <span class="pokemon__id">Nº${data.id}</span>
-      </div>
+    let pokemonCard = document.createElement('div'),
+      pokemonName = document.createElement('h3'),
+      pokemonImg = document.createElement('img'),
+      pokemonId = document.createElement('span')
 
-      <div class="pokemon__container__image">
-        <img
-          src="${data.sprites.front_default}"
-          alt="image of ${data.name}"
-          class="pokemon__img"
-        />
-      </div>
+    pokemonCard.className = 'pokemon__card'
 
-      <div class="pokemon__container__options">
-        <button class="info_pokemon">Info</button>
-      </div>
-    </div>
-  `
-    $pokemonTableContainer.dataset.id = data.id
-    $pokemonTableContainer.appendChild = pokemonList
+    pokemonName.className = 'pokemon__name'
+    pokemonName.textContent = data.name
+
+    pokemonImg.className = 'pokemon__img'
+    pokemonImg.src = `${data.sprites.front_default}`
+    pokemonImg.alt = `image of ${data.name}`
+
+    pokemonId.className = 'pokemon__id'
+    pokemonId.textContent = `Nº${data.id}`
+
+    pokemonCard.appendChild(pokemonName)
+    pokemonCard.appendChild(pokemonImg)
+    pokemonCard.appendChild(pokemonId)
+
+    pokemonCard.dataset.id = data.id
+    $pokemonTableContainer.appendChild(pokemonCard)
   } catch (error) {}
 }
 

@@ -11,17 +11,39 @@
       <input
         type="text"
         id="pokemonSearchBar"
-        placeholder="183, pikachu, ditto, 56 ..."
+        placeholder="183, pikachu, Ditto, 56 ..."
       />
       <button id="buttonSearch">Buscar</button>
     </header>
+
+    <section id="pokemon__container"></section>
+
     <section id="pokemon__table">
       <h2>Pokemones añadidos</h2>
       <div id="pokemon__table__container"></div>
     </section>
-
-    <section id="pokemon__container"></section>
-
     <script src="./main.js" type="module"></script>
   </body>
 </html>
+
+<!--
+`
+      <div>
+        <h3 class="pokemon__name">${data.name}</h3>
+        <span class="pokemon__id">Nº${data.id}</span>
+      </div>
+
+      <div>
+        <img
+          class="pokemon__img"
+          src="${data.sprites.front_default}"
+          alt="image of ${data.name}"
+        />
+      </div>
+
+      <div class="pokemon__container__options">
+        <button id="add__pokemon__btn" >Agregar</button>
+        <button class="info__pokemon__btn" >Info</button>
+      </div>
+  `
+-->
